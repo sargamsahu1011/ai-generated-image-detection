@@ -1,0 +1,100 @@
+[
+  {
+    "held_out_generator": "imagenet_ai_0419_biggan",
+    "train_images": 23999,
+    "validation_images": 6000,
+    "test_images": 5000,
+    "train_generators": [
+      "imagenet_ai_0419_vqdm",
+      "imagenet_ai_0424_sdv5",
+      "imagenet_ai_0424_wukong",
+      "imagenet_ai_0508_adm",
+      "imagenet_glide",
+      "imagenet_midjourney"
+    ]
+  },
+  {
+    "held_out_generator": "imagenet_ai_0419_vqdm",
+    "train_images": 23999,
+    "validation_images": 6000,
+    "test_images": 5000,
+    "train_generators": [
+      "imagenet_ai_0419_biggan",
+      "imagenet_ai_0424_sdv5",
+      "imagenet_ai_0424_wukong",
+      "imagenet_ai_0508_adm",
+      "imagenet_glide",
+      "imagenet_midjourney"
+    ]
+  },
+  {
+    "held_out_generator": "imagenet_ai_0424_sdv5",
+    "train_images": 23999,
+    "validation_images": 6000,
+    "test_images": 5000,
+    "train_generators": [
+      "imagenet_ai_0419_biggan",
+      "imagenet_ai_0419_vqdm",
+      "imagenet_ai_0424_wukong",
+      "imagenet_ai_0508_adm",
+      "imagenet_glide",
+      "imagenet_midjourney"
+    ]
+  },
+  {
+    "held_out_generator": "imagenet_ai_0424_wukong",
+    "train_images": 23999,
+    "validation_images": 6000,
+    "test_images": 5000,
+    "train_generators": [
+      "imagenet_ai_0419_biggan",
+      "imagenet_ai_0419_vqdm",
+      "imagenet_ai_0424_sdv5",
+      "imagenet_ai_0508_adm",
+      "imagenet_glide",
+      "imagenet_midjourney"
+    ]
+  },
+  {
+    "held_out_generator": "imagenet_ai_0508_adm",
+    "train_images": 24000,
+    "validation_images": 6000,
+    "test_images": 4999,
+    "train_generators": [
+      "imagenet_ai_0419_biggan",
+      "imagenet_ai_0419_vqdm",
+      "imagenet_ai_0424_sdv5",
+      "imagenet_ai_0424_wukong",
+      "imagenet_glide",
+      "imagenet_midjourney"
+    ]
+  },
+  {
+    "held_out_generator": "imagenet_glide",
+    "train_images": 23999,
+    "validation_images": 6000,
+    "test_images": 5000,
+    "train_generators": [
+      "imagenet_ai_0419_biggan",
+      "imagenet_ai_0419_vqdm",
+      "imagenet_ai_0424_sdv5",
+      "imagenet_ai_0424_wukong",
+      "imagenet_ai_0508_adm",
+      "imagenet_midjourney"
+    ]
+  },
+  {
+    "held_out_generator": "imagenet_midjourney",
+    "train_images": 23999,
+    "validation_images": 6000,
+    "test_images": 5000,
+    "train_generators": [
+      "imagenet_ai_0419_biggan",
+      "imagenet_ai_0419_vqdm",
+      "imagenet_ai_0424_sdv5",
+      "imagenet_ai_0424_wukong",
+      "imagenet_ai_0508_adm",
+      "imagenet_glide"
+    ]
+  }
+]
