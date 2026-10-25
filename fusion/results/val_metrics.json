@@ -1,0 +1,121 @@
+{
+  "dataset_csv": "C:\\Users\\EKLAVYA\\Ai-Image-Detector\\metadata\\branch_b_splits\\val.csv",
+  "total_samples": 6000,
+  "branch_a_spatial": {
+    "accuracy": 0.9583,
+    "macro_f1": 0.9583,
+    "roc_auc": 0.9933,
+    "confusion_matrix": [
+      [
+        2853,
+        147
+      ],
+      [
+        103,
+        2897
+      ]
+    ],
+    "class_wise": {
+      "real_nature_0": {
+        "precision": 0.9652,
+        "recall": 0.951,
+        "f1_score": 0.958,
+        "support": 3000
+      },
+      "ai_fake_1": {
+        "precision": 0.9517,
+        "recall": 0.9657,
+        "f1_score": 0.9586,
+        "support": 3000
+      }
+    }
+  },
+  "branch_b_frequency": {
+    "accuracy": 0.8042,
+    "macro_f1": 0.8041,
+    "roc_auc": 0.8905,
+    "confusion_matrix": [
+      [
+        2448,
+        552
+      ],
+      [
+        623,
+        2377
+      ]
+    ],
+    "class_wise": {
+      "real_nature_0": {
+        "precision": 0.7971,
+        "recall": 0.816,
+        "f1_score": 0.8065,
+        "support": 3000
+      },
+      "ai_fake_1": {
+        "precision": 0.8115,
+        "recall": 0.7923,
+        "f1_score": 0.8018,
+        "support": 3000
+      }
+    }
+  },
+  "late_fusion": {
+    "alpha_weight_branch_a": 0.51,
+    "accuracy": 0.965,
+    "macro_f1": 0.965,
+    "roc_auc": 0.989,
+    "confusion_matrix": [
+      [
+        2873,
+        127
+      ],
+      [
+        83,
+        2917
+      ]
+    ],
+    "class_wise": {
+      "real_nature_0": {
+        "precision": 0.9719,
+        "recall": 0.9577,
+        "f1_score": 0.9647,
+        "support": 3000
+      },
+      "ai_fake_1": {
+        "precision": 0.9583,
+        "recall": 0.9723,
+        "f1_score": 0.9653,
+        "support": 3000
+      }
+    }
+  },
+  "feature_fusion": {
+    "accuracy": 0.9673,
+    "macro_f1": 0.9673,
+    "roc_auc": 0.9953,
+    "confusion_matrix": [
+      [
+        2895,
+        105
+      ],
+      [
+        91,
+        2909
+      ]
+    ],
+    "class_wise": {
+      "real_nature_0": {
+        "precision": 0.9695,
+        "recall": 0.965,
+        "f1_score": 0.9673,
+        "support": 3000
+      },
+      "ai_fake_1": {
+        "precision": 0.9652,
+        "recall": 0.9697,
+        "f1_score": 0.9674,
+        "support": 3000
+      }
+    }
+  }
+}

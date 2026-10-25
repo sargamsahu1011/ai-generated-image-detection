@@ -1,0 +1,121 @@
+{
+  "dataset_csv": "C:\\Users\\EKLAVYA\\Ai-Image-Detector\\metadata\\logo_splits\\imagenet_ai_0419_biggan_test.csv",
+  "total_samples": 5000,
+  "branch_a_spatial": {
+    "accuracy": 0.8508,
+    "macro_f1": 0.8493,
+    "roc_auc": 0.9576,
+    "confusion_matrix": [
+      [
+        2377,
+        123
+      ],
+      [
+        623,
+        1877
+      ]
+    ],
+    "class_wise": {
+      "real_nature_0": {
+        "precision": 0.7923,
+        "recall": 0.9508,
+        "f1_score": 0.8644,
+        "support": 2500
+      },
+      "ai_fake_1": {
+        "precision": 0.9385,
+        "recall": 0.7508,
+        "f1_score": 0.8342,
+        "support": 2500
+      }
+    }
+  },
+  "branch_b_frequency": {
+    "accuracy": 0.584,
+    "macro_f1": 0.5647,
+    "roc_auc": 0.582,
+    "confusion_matrix": [
+      [
+        1987,
+        513
+      ],
+      [
+        1567,
+        933
+      ]
+    ],
+    "class_wise": {
+      "real_nature_0": {
+        "precision": 0.5591,
+        "recall": 0.7948,
+        "f1_score": 0.6564,
+        "support": 2500
+      },
+      "ai_fake_1": {
+        "precision": 0.6452,
+        "recall": 0.3732,
+        "f1_score": 0.4729,
+        "support": 2500
+      }
+    }
+  },
+  "late_fusion": {
+    "alpha_weight_branch_a": 0.51,
+    "accuracy": 0.8052,
+    "macro_f1": 0.8008,
+    "roc_auc": 0.8958,
+    "confusion_matrix": [
+      [
+        2384,
+        116
+      ],
+      [
+        858,
+        1642
+      ]
+    ],
+    "class_wise": {
+      "real_nature_0": {
+        "precision": 0.7353,
+        "recall": 0.9536,
+        "f1_score": 0.8304,
+        "support": 2500
+      },
+      "ai_fake_1": {
+        "precision": 0.934,
+        "recall": 0.6568,
+        "f1_score": 0.7713,
+        "support": 2500
+      }
+    }
+  },
+  "feature_fusion": {
+    "accuracy": 0.7268,
+    "macro_f1": 0.7105,
+    "roc_auc": 0.9128,
+    "confusion_matrix": [
+      [
+        2411,
+        89
+      ],
+      [
+        1277,
+        1223
+      ]
+    ],
+    "class_wise": {
+      "real_nature_0": {
+        "precision": 0.6537,
+        "recall": 0.9644,
+        "f1_score": 0.7793,
+        "support": 2500
+      },
+      "ai_fake_1": {
+        "precision": 0.9322,
+        "recall": 0.4892,
+        "f1_score": 0.6417,
+        "support": 2500
+      }
+    }
+  }
+}

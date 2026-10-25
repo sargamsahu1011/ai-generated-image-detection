@@ -1,0 +1,25 @@
+{
+  "experiment": "Branch A Spatial ResNet50",
+  "held_out_generator": "imagenet_ai_0419_vqdm",
+  "checkpoint_epoch": 9,
+  "validation_loss": 0.09469268951332135,
+  "validation_accuracy": 0.9683333333333334,
+  "test_samples": 5000,
+  "threshold": 0.5,
+  "accuracy": 0.616,
+  "precision": 0.8897849462365591,
+  "recall": 0.2648,
+  "f1": 0.4081381011097411,
+  "roc_auc": 0.81603216,
+  "pr_auc": 0.8067670115835709,
+  "confusion_matrix": [
+    [
+      2418,
+      82
+    ],
+    [
+      1838,
+      662
+    ]
+  ]
+}

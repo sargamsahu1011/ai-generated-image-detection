@@ -31,7 +31,7 @@ checkpoints/
 *.onnx
 
 # Generated results
-results/
+# results/
 outputs/
 
 # Colab

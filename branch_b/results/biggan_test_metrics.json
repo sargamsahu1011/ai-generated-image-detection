@@ -1,0 +1,37 @@
+{
+  "checkpoint": "C:\\Users\\EKLAVYA\\Ai-Image-Detector\\branch_b\\models\\frequency\\best_model.pt",
+  "checkpoint_epoch": 2,
+  "samples": 5000,
+  "loss": 1.0156176601409912,
+  "accuracy": 0.584,
+  "macro_f1": 0.564654718447974,
+  "roc_auc": 0.58201328,
+  "confusion_matrix": [
+    [
+      1987,
+      513
+    ],
+    [
+      1567,
+      933
+    ]
+  ],
+  "class_counts": {
+    "real/nature (0)": 2500,
+    "AI/fake (1)": 2500
+  },
+  "class_wise_results": {
+    "real_nature_0": {
+      "precision": 0.5590883511536298,
+      "recall": 0.7948,
+      "f1_score": 0.6564255037991411,
+      "support": 2500
+    },
+    "ai_fake_1": {
+      "precision": 0.6452282157676349,
+      "recall": 0.3732,
+      "f1_score": 0.4728839330968069,
+      "support": 2500
+    }
+  }
+}

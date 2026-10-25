@@ -1,0 +1,25 @@
+{
+  "experiment": "Branch A Spatial ResNet50",
+  "held_out_generator": "imagenet_midjourney",
+  "checkpoint_epoch": 2,
+  "validation_loss": 0.09925498924901088,
+  "validation_accuracy": 0.966,
+  "test_samples": 5000,
+  "threshold": 0.5,
+  "accuracy": 0.727,
+  "precision": 0.9276563677467973,
+  "recall": 0.4924,
+  "f1": 0.6433237522863862,
+  "roc_auc": 0.8744043199999999,
+  "pr_auc": 0.8832913986410101,
+  "confusion_matrix": [
+    [
+      2404,
+      96
+    ],
+    [
+      1269,
+      1231
+    ]
+  ]
+}
