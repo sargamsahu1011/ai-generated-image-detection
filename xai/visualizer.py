@@ -174,7 +174,7 @@ class XAIVisualizer:
                     fontweight="bold",
                     fontsize=9,
                 )
-            ax6.set_ylim(0, max(pcts) * 1.25 if pcts else 100)
+            ax6.set_ylim(0, max(max(pcts) * 1.25 if pcts else 100, 10.0))
             ax6.set_ylabel("Attribution Weight (%)", fontsize=10)
         else:
             ax6.text(0.5, 0.5, "Band Attribution\nN/A", ha="center", va="center")

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multimodal AI-Generated Image Detector & XAI Suite</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glow-ai {
+      box-shadow: 0 0 40px -10px rgba(239, 68, 68, 0.35);
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+    .glow-real {
+      box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.35);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+  <!-- Background decorative glows -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed top-1/3 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Top Navigation -->
+  <header class="border-b border-slate-800/80 sticky top-0 z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-bold text-base tracking-tight text-white flex items-center gap-2">
+            Multimodal AI Detector
+            <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">XAI Suite</span>
+          </h1>
+          <p class="text-xs text-slate-400">JUET Minor Project • Spatial ResNet & 2D FFT Analysis</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          System Online
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- Hero / Introduction -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+        Detect AI-Generated Images with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Explainable Physics</span>
+      </h2>
+      <p class="text-sm sm:text-base text-slate-400">
+        Combines spatial pixel anomalies and 2D Fast Fourier Transform (FFT) spectral fingerprinting to detect Midjourney, Stable Diffusion, DALL-E, and GANs with verifiable visual explanations.
+      </p>
+    </div>
+
+    <!-- Quick Sample Selector -->
+    <div class="glass rounded-2xl p-4 sm:p-5 space-y-3">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-semibold tracking-wider uppercase text-slate-400 flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          Quick Test Gallery (One-Click Samples)
+        </span>
+        <span class="text-xs text-slate-500">Click any image to test immediately</span>
+      </div>
+      <div id="sampleChips" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        <button onclick="loadSample('uploaded_check.jpg', 'AI Sunset Lake')" class="p-2.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-indigo-500/40 text-left transition flex items-center gap-2 group">
+          <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+          <div class="overflow-hidden">
+            <p class="text-xs font-semibold text-slate-200 truncate group-hover:text-indigo-400">AI Sunset Lake</p>
+            <p class="text-[10px] text-slate-500 truncate">Diffusion generated</p>
+          </div>
+        </button>
+        <button onclick="loadSample('sample_ai.png', 'AI Grid Pattern')" class="p-2.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-indigo-500/40 text-left transition flex items-center gap-2 group">
+          <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+          <div class="overflow-hidden">
+            <p class="text-xs font-semibold text-slate-200 truncate group-hover:text-indigo-400">AI Grid Pattern</p>
+            <p class="text-[10px] text-slate-500 truncate">GAN Transposed Conv</p>
+          </div>
+        </button>
+        <button onclick="loadSample('sample_real.jpg', 'Real Haridwar Ghat')" class="p-2.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-emerald-500/40 text-left transition flex items-center gap-2 group">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <div class="overflow-hidden">
+            <p class="text-xs font-semibold text-slate-200 truncate group-hover:text-emerald-400">Haridwar Ghat</p>
+            <p class="text-[10px] text-slate-500 truncate">Real Daytime Photo</p>
+          </div>
+        </button>
+        <button onclick="loadSample('user_image_2.jpg', 'Real Evening River')" class="p-2.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-emerald-500/40 text-left transition flex items-center gap-2 group">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <div class="overflow-hidden">
+            <p class="text-xs font-semibold text-slate-200 truncate group-hover:text-emerald-400">Evening River</p>
+            <p class="text-[10px] text-slate-500 truncate">Real Twilight Photo</p>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Upload & Preview Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left: Upload Card -->
+      <div class="lg:col-span-5 space-y-4">
+        <div class="glass rounded-2xl p-6 border-dashed border-2 border-slate-800 hover:border-indigo-500/50 transition duration-200 text-center relative group">
+          <input type="file" id="fileInput" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+          
+          <div id="dropzoneContent" class="space-y-4 py-8">
+            <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 mx-auto flex items-center justify-center group-hover:scale-105 transition">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-200">Drag & drop your image here</p>
+              <p class="text-xs text-slate-400 mt-1">or click to browse from device (JPG, PNG, WEBP)</p>
+            </div>
+          </div>
+
+          <!-- Preview image (hidden initially) -->
+          <div id="previewContainer" class="hidden space-y-3">
+            <div class="relative rounded-xl overflow-hidden max-h-72 bg-slate-900 border border-slate-800 flex items-center justify-center">
+              <img id="previewImg" src="" alt="Selected Preview" class="object-contain max-h-72 w-full">
+            </div>
+            <div class="flex items-center justify-between text-xs text-slate-400 px-1">
+              <span id="previewName" class="truncate font-medium"></span>
+              <span id="previewSize"></span>
+            </div>
+          </div>
+        </div>
+
+        <button id="analyzeBtn" onclick="analyzeCurrentImage()" disabled class="w-full py-3.5 px-6 rounded-xl font-bold text-sm bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-lg shadow-indigo-600/25 transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+          <svg id="btnIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <span id="btnText">Analyze Image</span>
+        </button>
+      </div>
+
+      <!-- Right: Live Result Dashboard -->
+      <div class="lg:col-span-7">
+        
+        <!-- Placeholder when nothing is analyzed yet -->
+        <div id="emptyState" class="glass rounded-2xl p-12 text-center h-full flex flex-col items-center justify-center space-y-4 border border-slate-800">
+          <div class="w-14 h-14 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </div>
+          <div class="max-w-sm">
+            <h3 class="text-base font-bold text-slate-300">No Image Analyzed Yet</h3>
+            <p class="text-xs text-slate-500 mt-1">Upload a photo or select one from the gallery above to run spatial Grad-CAM and 2D FFT spectral diagnostics.</p>
+          </div>
+        </div>
+
+        <!-- Active Results Container -->
+        <div id="resultsCard" class="hidden glass rounded-2xl p-6 space-y-6">
+          
+          <!-- Verdict Badge -->
+          <div id="verdictBanner" class="rounded-xl p-5 border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <span id="verdictTag" class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md"></span>
+              <h3 id="verdictTitle" class="text-2xl font-black tracking-tight text-white"></h3>
+              <p id="verdictFinding" class="text-xs text-slate-300 max-w-lg"></p>
+            </div>
+            <div class="text-right sm:border-l sm:border-slate-800/80 sm:pl-6">
+              <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Confidence</p>
+              <p id="confidenceScore" class="text-3xl font-extrabold text-white mt-0.5"></p>
+            </div>
+          </div>
+
+          <!-- Metrics 3-Card Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
+              <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Spatial P(AI)</p>
+              <p id="metricSpatial" class="text-lg font-bold text-white"></p>
+              <p class="text-[10px] text-slate-500">Pixel boundary artifacts</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
+              <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Spectral P(AI)</p>
+              <p id="metricSpectral" class="text-lg font-bold text-white"></p>
+              <p class="text-[10px] text-slate-500">2D FFT frequency noise</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
+              <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Multimodal Fusion</p>
+              <p id="metricFusion" class="text-lg font-bold text-indigo-400"></p>
+              <p class="text-[10px] text-slate-500">Combined decision score</p>
+            </div>
+          </div>
+
+          <!-- Diagnostic Panel View -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                6-Panel Multimodal Diagnostic Visualization
+              </h4>
+              <a id="downloadDiagLink" href="#" download="xai_diagnostic.png" class="text-xs font-medium text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                Save Figure
+              </a>
+            </div>
+            <div class="rounded-xl overflow-hidden border border-slate-800 bg-black/60 shadow-inner group relative">
+              <img id="diagnosticImg" src="" alt="Diagnostic Heatmaps" class="w-full object-contain max-h-[500px]">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 py-4 text-center text-xs text-slate-500">
+    JUET Minor Project • Multimodal AI-Generated Image Detector with Explainable AI (XAI)
+  </footer>
+
+  <!-- Client-side Logic -->
+  <script>
+    let currentFile = null;
+
+    const fileInput = document.getElementById('fileInput');
+    const previewContainer = document.getElementById('previewContainer');
+    const dropzoneContent = document.getElementById('dropzoneContent');
+    const previewImg = document.getElementById('previewImg');
+    const previewName = document.getElementById('previewName');
+    const previewSize = document.getElementById('previewSize');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+
+    const emptyState = document.getElementById('emptyState');
+    const resultsCard = document.getElementById('resultsCard');
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) handleSelectedFile(file);
+    });
+
+    function handleSelectedFile(file) {
+      currentFile = file;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImg.src = e.target.result;
+        previewName.textContent = file.name;
+        previewSize.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+        dropzoneContent.classList.add('hidden');
+        previewContainer.classList.remove('hidden');
+        analyzeBtn.disabled = false;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function loadSample(filename, displayName) {
+      try {
+        const response = await fetch(`/samples/${filename}`);
+        if (!response.ok) throw new Error('Sample not found');
+        const blob = await response.blob();
+        const file = new File([blob], filename, { type: blob.type || 'image/jpeg' });
+        handleSelectedFile(file);
+        // Automatically trigger analysis
+        analyzeCurrentImage();
+      } catch (err) {
+        alert('Could not load sample: ' + err.message);
+      }
+    }
+
+    async function analyzeCurrentImage() {
+      if (!currentFile) return;
+
+      const btn = document.getElementById('analyzeBtn');
+      const btnText = document.getElementById('btnText');
+      const btnIcon = document.getElementById('btnIcon');
+
+      btn.disabled = true;
+      btnText.textContent = 'Running XAI Engine...';
+      btnIcon.classList.add('animate-spin');
+
+      const formData = new FormData();
+      formData.append('image', currentFile);
+
+      try {
+        const res = await fetch('/explain', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!res.ok) {
+          const errData = await res.json();
+          throw new Error(errData.error || 'Server error during inference');
+        }
+
+        const data = await res.json();
+        renderResults(data);
+      } catch (err) {
+        alert('Analysis Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = 'Analyze Image';
+        btnIcon.classList.remove('animate-spin');
+      }
+    }
+
+    function renderResults(data) {
+      emptyState.classList.add('hidden');
+      resultsCard.classList.remove('hidden');
+
+      const isAI = data.prediction === 'AI';
+      const verdictBanner = document.getElementById('verdictBanner');
+      const verdictTag = document.getElementById('verdictTag');
+      const verdictTitle = document.getElementById('verdictTitle');
+      const verdictFinding = document.getElementById('verdictFinding');
+      const confidenceScore = document.getElementById('confidenceScore');
+
+      if (isAI) {
+        verdictBanner.className = 'rounded-xl p-5 border glow-ai bg-rose-950/20 border-rose-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4';
+        verdictTag.className = 'text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md bg-rose-500/20 text-rose-400 border border-rose-500/30';
+        verdictTag.textContent = 'Synthetically Generated';
+        verdictTitle.textContent = 'AI-Generated Image';
+        verdictFinding.textContent = 'Anomalous high-frequency spectral noise and spatial synthesis artifacts detected, consistent with generative diffusion or GAN architectures.';
+      } else {
+        verdictBanner.className = 'rounded-xl p-5 border glow-real bg-emerald-950/20 border-emerald-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4';
+        verdictTag.className = 'text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+        verdictTag.textContent = 'Authentic Capture';
+        verdictTitle.textContent = 'Real Natural Photo';
+        verdictFinding.textContent = 'Strict 1/f power-law frequency decay and authentic continuous textures observed, consistent with physical camera sensor capture.';
+      }
+
+      confidenceScore.textContent = `${data.confidence_percent}%`;
+      document.getElementById('metricSpatial').textContent = `${(data.spatial_prob_ai * 100).toFixed(1)}%`;
+      document.getElementById('metricSpectral').textContent = `${(data.spectral_prob_ai * 100).toFixed(1)}%`;
+      document.getElementById('metricFusion').textContent = `${(data.fusion_prob_ai * 100).toFixed(1)}%`;
+
+      const diagImg = document.getElementById('diagnosticImg');
+      const downloadLink = document.getElementById('downloadDiagLink');
+      diagImg.src = data.diagnostic_panel_base64;
+      downloadLink.href = data.diagnostic_panel_base64;
+    }
+  </script>
+</body>
+</html>

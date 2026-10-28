@@ -33,6 +33,9 @@ class MultimodalInferenceEngine:
         self.device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
         self.alpha = alpha
 
+        self.has_branch_a_ckpt = bool(branch_a_checkpoint and Path(branch_a_checkpoint).is_file())
+        self.has_branch_b_ckpt = bool(branch_b_checkpoint and Path(branch_b_checkpoint).is_file())
+
         self.transform = transforms.Compose([
             transforms.Resize((224, 224)),
             transforms.ToTensor(),
@@ -99,10 +102,26 @@ class MultimodalInferenceEngine:
 
         # Spectral prediction & Spectral Grad-CAM
         spectral_res = self.spectral_xai.explain(pil_image, self.transform, target_class=1)
-        spectral_prob = spectral_res["pred_prob"]
         spectral_overlay = spectral_res["overlay"]
         fft_pil = spectral_res["fft_image"]
         band_attr = spectral_res["band_attribution"]
+
+        # Physics anomaly detection when running without neural checkpoints
+        from xai.spectral_xai import detect_spectral_physics_anomaly
+        physics_res = detect_spectral_physics_anomaly(
+            raw_magnitude=spectral_res["raw_magnitude"],
+            radii=spectral_res["radial_radii"],
+            profile=spectral_res["radial_profile"],
+            original_image=pil_image,
+        )
+
+        if not self.has_branch_b_ckpt:
+            spectral_prob = physics_res["prob_ai"]
+        else:
+            spectral_prob = spectral_res["pred_prob"]
+
+        if not self.has_branch_a_ckpt:
+            spatial_prob = spectral_prob
 
         # Late fusion
         fusion_prob = (self.alpha * spatial_prob) + ((1.0 - self.alpha) * spectral_prob)

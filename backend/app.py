@@ -8,11 +8,17 @@ Endpoints:
 """
 
 import io
-from flask import Flask, jsonify, request
+import os
+from pathlib import Path
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from PIL import Image
 
-app = Flask(__name__)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = PROJECT_ROOT / "frontend"
+SAMPLES_DIR = PROJECT_ROOT / "samples"
+
+app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
 CORS(app)
 
 # Lazy initialized engine
@@ -25,6 +31,26 @@ def get_engine():
         from backend.inference import MultimodalInferenceEngine
         _engine = MultimodalInferenceEngine()
     return _engine
+
+
+@app.route("/", methods=["GET"])
+def index():
+    return send_from_directory(str(FRONTEND_DIR), "index.html")
+
+
+@app.route("/api/samples", methods=["GET"])
+def list_samples():
+    files = []
+    if SAMPLES_DIR.is_dir():
+        for p in SAMPLES_DIR.glob("*"):
+            if p.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}:
+                files.append(p.name)
+    return jsonify({"samples": sorted(files)})
+
+
+@app.route("/samples/<path:filename>", methods=["GET"])
+def serve_sample(filename):
+    return send_from_directory(str(SAMPLES_DIR), filename)
 
 
 @app.route("/health", methods=["GET"])
