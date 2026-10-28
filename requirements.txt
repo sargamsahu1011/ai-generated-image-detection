@@ -6,3 +6,6 @@ scikit-learn
 Pillow
 tqdm
 kaggle
+matplotlib
+flask
+flask-cors

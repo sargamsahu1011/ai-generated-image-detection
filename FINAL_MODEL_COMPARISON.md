@@ -91,18 +91,28 @@ Feature Fusion (MLP):
 
 ## 3. Leave-One-Generator-Out (LOGO) Cross-Validation (Branch A)
 
-Evaluates model robustness when holding out one generator entirely from training:
+Evaluates model robustness across all generators when withholding each generator entirely from training (evaluated across 5,000 samples per fold with 0.5 threshold).
 
-| Fold | Held-Out Generator Type | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
-| :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| 1 | BigGAN (GAN) | 82.70% | 74.68% | 98.96% | 85.12% | 0.9285 |
-| 2 | VQDM (Diffusion/VQ) | 55.26% | 68.81% | 19.24% | 30.07% | 0.6449 |
-| 3 | Wukong (Diffusion) | 86.76% | 85.87% | 88.00% | 86.92% | 0.9352 |
-| 4 | Glide (Diffusion) | 84.92% | 86.22% | 83.12% | 84.64% | 0.9213 |
-| 5 | Midjourney (Diffusion) | 82.80% | 81.73% | 84.48% | 83.08% | 0.8956 |
-| 6 | Stable Diffusion v5 (Diffusion)| 88.50% | 85.19% | 93.20% | 89.02% | 0.9358 |
-| 7 | ADM (Diffusion) | 81.56% | 74.05% | 97.16% | 84.05% | 0.8972 |
-| **Mean** | **Overall Cross-Generator** | **80.36%** | **79.51%** | **80.59%** | **78.99%** | **0.8798** |
+### A. Final 10-Epoch LOGO Benchmark (Latest `test_metrics.json` Results)
+*Evaluated using the best converged checkpoint for each generator:*
+
+| Fold | Held-Out Generator | Generator Family | Accuracy | Precision | Recall | F1 Score | ROC-AUC | Best Epoch |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | `imagenet_glide` | Diffusion | **97.18%** | 96.57% | 97.84% | 97.20% | 0.9964 | Epoch 3 |
+| 2 | `imagenet_ai_0424_sdv5` | Diffusion | **95.02%** | 94.47% | 95.64% | 95.05% | 0.9905 | Epoch 5 |
+| 3 | `imagenet_ai_0424_wukong` | Diffusion | **89.12%** | 95.92% | 81.72% | 88.25% | 0.9707 | Epoch 2 |
+| 4 | `imagenet_ai_0419_biggan` | **GAN** | **85.00%** | 93.79% | 74.96% | 83.33% | 0.9575 | Epoch 8 |
+| 5 | `imagenet_midjourney` | Diffusion | **72.70%** | 92.77% | 49.24% | 64.33% | 0.8744 | Epoch 2 |
+| 6 | `imagenet_ai_0508_adm` | Diffusion | **72.25%** | 95.88% | 46.52% | 62.64% | 0.8941 | Epoch 6 |
+| 7 | `imagenet_ai_0419_vqdm` | **VQ-Diffusion** | **61.60%** | 88.98% | 26.48% | 40.81% | 0.8160 | Epoch 9 |
+| **Mean** | **Overall Cross-Generator** | — | **81.84%** | **94.05%** | **67.49%** | **75.94%** | **0.9285** | — |
+
+> **VQDM Analysis (61.60% Accuracy, 81.60% ROC-AUC)**: VQDM utilizes vector-quantized discrete latent tokens rather than continuous diffusion noise schedules, producing distinct boundary representations. Despite lower recall at default 0.5 threshold, precision remains high (88.98%) and ROC-AUC is strong (0.8160).
+
+### B. Initial 3-Epoch Baseline Reference (`LOGO_results.csv`)
+*Historical baseline from Week 7 experimentation:*
+* Mean Accuracy: **80.36%**, Mean ROC-AUC: **0.8798**
+* Folds: BigGAN (82.70%), VQDM (55.26%), Wukong (86.76%), Glide (84.92%), Midjourney (82.80%), SDv5 (88.50%), ADM (81.56%).
 
 ---
 

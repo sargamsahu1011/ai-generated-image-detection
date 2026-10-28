@@ -104,8 +104,16 @@ ai-generated-image-detection/
 │   ├── fusion_model.py         # Latent concatenation + MLP head
 │   ├── evaluate.py             # Dual-branch comparative evaluation
 │   └── results/                # Comparative benchmark JSONs & predictions
+├── xai/                        # Explainable AI (Grad-CAM, Spectral-XAI & Diagnostics)
+│   ├── gradcam.py              # Pure PyTorch Grad-CAM & Grad-CAM++
+│   ├── spectral_xai.py         # 2D FFT & Azimuthal Radial Energy Profiling
+│   ├── visualizer.py           # 6-panel publication-quality diagnostic figure generator
+│   ├── explain.py              # Unified CLI diagnostic tool
+│   └── README.md               # Mathematical formulations & viva defense Q&A
 ├── metadata/                   # Train/Val/Test CSV splits and LOGO manifests
-├── backend/                    # Flask REST API for inference deployment
+├── backend/                    # Flask REST API for inference & XAI deployment
+│   ├── app.py                  # Endpoints: /health, /predict, /explain
+│   └── inference.py            # Multimodal inference & visual explanation engine
 ├── frontend/                   # Web user interface (Vercel deployment)
 ├── FINAL_MODEL_COMPARISON.md   # Complete experimental benchmark report
 └── final_model_comparison.csv  # Machine-readable tabular results
@@ -140,6 +148,15 @@ python -m fusion.evaluate \
   --csv metadata/branch_b_splits/val.csv \
   --fusion-checkpoint fusion/checkpoints/best_fusion_model.pt \
   --output-json fusion/results/val_metrics.json
+```
+
+### 4. Run Explainable AI (XAI) Diagnostics
+```bash
+# Run self-contained demonstration:
+python -m xai.explain --demo --output-dir xai/outputs
+
+# Run on an arbitrary test image:
+python -m xai.explain --image path/to/sample.png --output-dir xai/outputs
 ```
 
 ---

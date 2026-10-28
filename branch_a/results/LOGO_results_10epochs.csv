@@ -1,0 +1,8 @@
+fold,held_out_generator,accuracy,precision,recall,f1,roc_auc,pr_auc,checkpoint_epoch
+1,imagenet_glide,0.9718,0.9657,0.9784,0.9720,0.9964,0.9962,3
+2,imagenet_ai_0424_sdv5,0.9502,0.9447,0.9564,0.9505,0.9905,0.9908,5
+3,imagenet_ai_0424_wukong,0.8912,0.9592,0.8172,0.8825,0.9707,0.9711,2
+4,imagenet_ai_0419_biggan,0.8500,0.9379,0.7496,0.8333,0.9575,0.9442,8
+5,imagenet_midjourney,0.7270,0.9277,0.4924,0.6433,0.8744,0.8833,2
+6,imagenet_ai_0508_adm,0.7225,0.9588,0.4652,0.6264,0.8941,0.9039,6
+7,imagenet_ai_0419_vqdm,0.6160,0.8898,0.2648,0.4081,0.8160,0.8068,9
