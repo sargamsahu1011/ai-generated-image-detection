@@ -20,9 +20,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy all project files
 COPY . .
 
-# Hugging Face Spaces listens on port 7860
-ENV PORT=7860
-EXPOSE 7860
+# Expose port (Render automatically sets $PORT, defaults to 5000)
+ENV PORT=5000
+EXPOSE 5000
 
-# Run Gunicorn bound to 0.0.0.0:7860
-CMD ["gunicorn", "--bind", "0.0.0.0:7860", "--workers", "2", "--timeout", "120", "backend.app:app"]
+# 1 Gunicorn worker with 2 threads keeps memory at ~300MB, safely inside Render's 512MB free RAM limit
+CMD exec gunicorn --bind 0.0.0.0:${PORT} --workers 1 --threads 2 --timeout 120 "backend.app:app"
