@@ -9,3 +9,5 @@ kaggle
 matplotlib
 flask
 flask-cors
+gunicorn
+
