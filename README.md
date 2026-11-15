@@ -10,11 +10,15 @@ pinned: false
 
 # Multimodal AI-Generated Image Detector & XAI Suite
 
+[![Render Live](https://img.shields.io/badge/Render-Live%20Demo-46E3B7?style=flat&logo=render&logoColor=white)](https://ai-generated-image-detection-qqxy.onrender.com)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.0+-000000.svg)](https://flask.palletsprojects.com/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v3-38bdf8.svg)](https://tailwindcss.com/)
 [![JUET Minor Project](https://img.shields.io/badge/JUET-Minor%20Project-success.svg)](https://www.juet.ac.in/)
+
+> 🚀 **Live Production Demo**: Try the interactive dashboard online at [**https://ai-generated-image-detection-qqxy.onrender.com**](https://ai-generated-image-detection-qqxy.onrender.com)
+
 
 An end-to-end deep learning and physics-grounded framework for detecting AI-generated synthetic images across diverse generative architectures (Diffusion Models and GANs). The system combines **spatial-domain pixel analysis** and **frequency-domain (2D FFT) spectral fingerprinting** into a unified multimodal fusion detector with **Explainable AI (XAI)** and a **real-time web dashboard**.
 
@@ -182,14 +186,15 @@ pip install -r requirements.txt
 
 ### 2. Launch the Interactive Web Dashboard
 
-Start the Flask application:
+* **Option A — Open Live Hosted Web Dashboard (No Installation Required):**  
+  👉 [**https://ai-generated-image-detection-qqxy.onrender.com**](https://ai-generated-image-detection-qqxy.onrender.com)
 
-```bash
-python -m backend.app
-```
-
-Then open your browser at:
-👉 **`http://localhost:5000`**
+* **Option B — Run Locally:**  
+  Start the local Flask application:
+  ```bash
+  python -m backend.app
+  ```
+  Then open your browser at: 👉 **`http://localhost:5000`**
 
 #### Dashboard Features:
 * **Drag-and-Drop Image Upload**: Test any custom JPG, PNG, or WEBP image.
