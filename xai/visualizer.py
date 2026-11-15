@@ -79,12 +79,12 @@ class XAIVisualizer:
         ax1.axis("off")
 
         # -------------------------------------------------------------
-        # Panel 2: Spatial Domain Grad-CAM (Branch A)
+        # Panel 2: Spatial Domain Grad-CAM (Visual Surface Analysis)
         # -------------------------------------------------------------
         ax2 = fig.add_subplot(gs[0, 1])
         ax2.imshow(spatial_overlay)
         ax2.set_title(
-            f"2. Spatial Grad-CAM (Branch A ResNet50)\n"
+            f"2. Visual Surface Attention (Grad-CAM)\n"
             f"P(AI) = {spatial_prob * 100:.1f}%  [{decision_spatial}]",
             fontsize=12,
             fontweight="bold",
@@ -108,12 +108,12 @@ class XAIVisualizer:
         ax3.axis("off")
 
         # -------------------------------------------------------------
-        # Panel 4: Spectral Domain Grad-CAM (Branch B)
+        # Panel 4: Spectral Domain Grad-CAM (Frequency Domain)
         # -------------------------------------------------------------
         ax4 = fig.add_subplot(gs[1, 0])
         ax4.imshow(spectral_overlay)
         ax4.set_title(
-            f"4. Spectral Grad-CAM (Branch B ResNet50)\n"
+            f"4. Spectral Frequency Attention (Grad-CAM)\n"
             f"P(AI) = {spectral_prob * 100:.1f}%  [{decision_spectral}]",
             fontsize=12,
             fontweight="bold",
@@ -181,7 +181,7 @@ class XAIVisualizer:
 
         summary_title = "6. Spectral Frequency Attribution"
         if fusion_prob is not None:
-            summary_title += f"\n[Multimodal Fusion P(AI) = {fusion_prob * 100:.1f}%]"
+            summary_title += f"\n[Combined Detection Score = {fusion_prob * 100:.1f}%]"
         ax6.set_title(summary_title, fontsize=12, fontweight="bold", pad=8)
         ax6.grid(axis="y", linestyle="--", alpha=0.5)
 

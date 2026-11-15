@@ -116,7 +116,7 @@ python -m xai.explain \
 
 ---
 
-## 🎯 Viva & Presentation Guide (JUET Defense)
+## 🎯 Technical Presentation & Defense Guide
 
 ### Q1: How does your model avoid learning dataset shortcuts?
 > **Answer**: "We applied Grad-CAM to Branch A and Spectral Grad-CAM to Branch B. Spatial Grad-CAM confirms the network attends to semantic boundaries (hair, eyes, unnatural blending borders) rather than background colors. Spectral Grad-CAM proves that Branch B targets high-frequency noise bands characteristic of generative upsampling."
