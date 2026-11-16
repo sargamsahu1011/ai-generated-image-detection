@@ -1,4 +1,4 @@
-# SpectraLens • Multimodal AI Image Forensics & Explainability
+# AI-Generated Image Detection
 
 [![Render Live](https://img.shields.io/badge/Render-Live%20Demo-46E3B7?style=flat&logo=render&logoColor=white)](https://ai-generated-image-detection-qqxy.onrender.com)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -8,32 +8,32 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > 🚀 **Try the Live Web App**: [**https://ai-generated-image-detection-qqxy.onrender.com**](https://ai-generated-image-detection-qqxy.onrender.com)  
-> *Upload any photo or click a sample from the built-in gallery for instant, explainable forensic verification.*
+> *Upload any image or test built-in samples to see real-time AI detection and visual forensic heatmaps.*
 
 ---
 
 ## 🌟 Why We Built This
 
-Modern generative models—like Midjourney, Stable Diffusion, DALL-E 3, and FLUX—have gotten scarily good. To the human eye, synthetic skin textures, lighting, and complex background scenes look indistinguishable from real photography.
+Modern AI image generators—like Midjourney, Stable Diffusion, DALL-E, and FLUX—have gotten remarkably good. To our eyes, skin textures, natural lighting, and background details look almost indistinguishable from real photography.
 
-Traditional detectors often look only at pixel textures, which means they can easily be fooled by high-resolution generators, compression filters, or simple post-processing.
+Most standard detectors look only at surface pixels. The problem? As image generators get better, those surface pixels look increasingly realistic, and traditional detectors easily get fooled by high resolution or basic compression.
 
-**SpectraLens takes a different, physics-grounded approach.**
+**This project takes a different approach: looking at camera physics.**
 
-Real camera sensors capture light through physical glass lenses, which naturally causes optical power to drop off smoothly following a universal natural law called **$1/f$ power-law decay**. In contrast, AI generators build pictures by upsampling latent grids and de-noising matrices. Even when the picture looks flawless to you, it leaves distinct, periodic mathematical fingerprints in the **frequency spectrum**.
+When a physical camera takes a photo, light passes through glass lenses onto a silicon sensor. This natural optical process causes light energy to fall off smoothly from low to high frequencies. In contrast, generative AI builds an image by upsampling numerical matrices and iteratively de-noising latent grids. Even when the picture looks completely real to human eyes, it leaves telltale periodic patterns and high-frequency noise spikes in the **frequency spectrum**.
 
-By looking at an image through two complementary lenses—**visual surface textures** and **2D Fourier frequency spectra**—SpectraLens achieves both high accuracy and explainable physical proof.
+By looking at an image through two complementary angles—**surface visual details** and **2D Fourier frequency patterns**—we can spot synthetic media with high confidence and verifiable visual proof.
 
 ---
 
-## ✨ Key Features
+## ✨ Highlights
 
-- **Dual-Domain Forensics**: Combines visual surface gradient analysis with 2D Fast Fourier Transform (FFT) spectral fingerprinting.
-- **Physical Law Verification**: Verifies compliance with natural optical $1/f$ power-law decay against generative upsampling noise.
-- **Explainable AI (XAI) Diagnostic Suite**: Generates a synchronized 6-panel forensic report showing exactly *why* an image was flagged.
-- **Cross-Generator Generalization**: Tested across Diffusion models (Stable Diffusion, ADM, GLIDE, VQDM, Wukong), Midjourney, and unseen GANs (BigGAN).
-- **Interactive Web Dashboard**: Modern, responsive dark-mode UI with drag-and-drop upload, one-click test gallery, and 150 DPI report export.
-- **Developer-Friendly REST API**: Lightweight `/predict` and diagnostic `/explain` endpoints for pipeline integration.
+- **Dual-Domain Detection**: Analyzes both pixel-level visual boundaries and 2D Fast Fourier Transform (FFT) frequency signatures.
+- **Grounded in Optical Physics**: Checks if the image follows natural camera lens light decay or exhibits artificial upsampling noise.
+- **Explainable AI (XAI)**: Generates a clear 6-panel visual diagnostic report showing exactly where and why an image was flagged.
+- **Tested Across Models**: Benchmarked against major generator families (Stable Diffusion, Midjourney, ADM, GLIDE, VQDM, Wukong) and unseen GANs.
+- **Interactive Web App**: Responsive dark-mode dashboard with drag-and-drop upload, instant sample gallery, and downloadable diagnostic figures.
+- **Ready-to-Use REST API**: Clean `/predict` and `/explain` endpoints for pipeline integration.
 
 ---
 
@@ -48,11 +48,11 @@ By looking at an image through two complementary lenses—**visual surface textu
                  ▼                                               ▼
       ┌─────────────────────┐                         ┌─────────────────────┐
       │   Visual Surface    │                         │  Spectral Frequency │
-      │      Forensics      │                         │     (2D FFT Map)    │
+      │      Analysis       │                         │     (2D FFT Map)    │
       └──────────┬──────────┘                         └──────────┬──────────┘
                  │                                               │
-                 │ Micro-textures, edge blending,                │ Periodic grid spikes,
-                 │ gradient continuity                           │ high-frequency noise
+                 │ Checks micro-textures, edge blending,         │ Unmasks periodic grid spikes
+                 │ and boundary consistency                      │ and high-frequency noise
                  │                                               │
                  └───────────────────────┬───────────────────────┘
                                          ▼
@@ -64,113 +64,100 @@ By looking at an image through two complementary lenses—**visual surface textu
                             Real Photo vs. AI-Generated
 ```
 
-1. **Visual Surface Forensics**:
-   Examines subtle local inconsistencies in pixel gradients, boundary transitions, and synthetic blending artifacts that often betray generative diffusion models.
+1. **Surface Texture Analysis**:
+   Scans for local inconsistencies in pixel gradients, unnatural skin/hair blending, and edge smoothing that often betray synthetic images.
 
-2. **Spectral Frequency Forensics (2D FFT)**:
-   Converts the image's luminance into frequency space via a 2D Fast Fourier Transform:
-   $$\text{Spectrum} = \text{fftshift}(\text{fft2}(\text{Luminance}))$$
-   This unmasks periodic lattice spikes caused by transposed convolutions and convolutional upsamplers that are completely invisible in standard RGB view.
+2. **Spectral Frequency Analysis (2D FFT)**:
+   Converts image luminance into frequency space using a 2D Fast Fourier Transform. This instantly reveals periodic lattice dots and grid patterns left behind by neural upsampling layers that are invisible in standard RGB view.
 
-3. **Azimuthal Radial Energy Profiling ($1/f$ Analysis)**:
-   Integrates energy radially from low to high frequencies. Authentic camera photographs display a steady linear drop-off in log-space ($\sim 1/f^\beta$), whereas synthetic images exhibit anomalous high-frequency energy spikes or unnatural plateauing.
+3. **Natural Optical Physics Check**:
+   Measures energy from low frequencies (broad shapes) to high frequencies (fine details). Real camera captures follow a smooth, steady downward decay curve; synthetic images routinely break this curve with abnormal high-frequency plateaus.
 
-4. **Multi-Domain Ensemble**:
-   Balances both perspectives to deliver a confident, calibrated verdict with high resilience to out-of-distribution generators.
+4. **Unified Decision**:
+   Combines both perspectives to produce a reliable, calibrated verdict with strong generalization.
 
 ---
 
-## 🔬 The 6-Panel Forensic Diagnostic Report
+## 🔬 The 6-Panel Diagnostic Report
 
-Every analysis generates a publication-ready diagnostic breakdown:
+When you analyze an image, the system generates a synchronized 6-panel forensic report:
 
-| Panel | Forensic Element | What It Tells You |
+| Panel | Name | What It Shows |
 | :---: | :--- | :--- |
-| **1** | **Input RGB Image** | Original image under inspection. |
-| **2** | **Surface Attention (Grad-CAM)** | Highlights the specific image regions and boundary artifacts driving the decision. |
-| **3** | **2D FFT Log-Magnitude Spectrum** | Frequency map showing DC center (low frequencies) out to edge borders (high frequencies). |
-| **4** | **Spectral Attention (Grad-CAM)** | Reveals which specific frequency bands exhibited anomalous energy. |
-| **5** | **Radial Energy Decay Profile** | Compares the image's energy drop-off curve against natural physical optics. |
-| **6** | **Band Attribution Breakdown** | Quantitative energy distribution across Low (0–33%), Mid (33–66%), and High (66–100%) frequency bands. |
+| **1** | **Input RGB Image** | Original image used as the reference baseline. |
+| **2** | **Surface Attention Heatmap** | Grad-CAM saliency highlighting the exact image regions and boundaries driving the prediction. |
+| **3** | **2D FFT Frequency Spectrum** | Centered frequency map (center = broad shapes, outer edges = fine details & noise). |
+| **4** | **Spectral Attention Heatmap** | Shows which specific frequency bands triggered the detector. |
+| **5** | **Radial Energy Decay Curve** | Compares the image's energy drop-off curve against natural physical camera optics. |
+| **6** | **Band Attribution Breakdown** | Energy percentages across Low (0–33%), Mid (33–66%), and High (66–100%) frequency bands. |
 
 ---
 
-## 📊 Benchmark Highlights
+## 📊 Performance & Results
 
-Evaluated across extensive real-world and synthetic datasets covering multiple generative architectures:
+We evaluated the system across thousands of real and synthetic images spanning diverse generator families:
 
-### 1. In-Distribution Performance (6 Generator Families)
-*Evaluated across Midjourney, Stable Diffusion v5, ADM, GLIDE, VQDM, and Wukong ($N = 6,000$):*
-
-- **Detection Accuracy**: **96.7%**
-- **Macro F1-Score**: **0.967**
-- **ROC-AUC**: **0.995**
-- **Authentic Recall**: **96.5%** | **Synthetic Recall**: **97.0%**
-
-### 2. Generalization to Unseen Architectures (Held-Out Test)
-*Evaluated on an unseen generator family held out entirely during training ($N = 5,000$):*
-
-- **Detection Accuracy**: **85.1%**
-- **ROC-AUC**: **0.958**
-- **Takeaway**: Spatial texture representations generalize reliably to completely unseen model families, while frequency spectra pinpoint architecture-specific upsampling artifacts.
+* **In-Distribution Accuracy**: **96.7%** across 6 known generator families (Midjourney, Stable Diffusion v5, ADM, GLIDE, VQDM, Wukong).
+* **Cross-Architecture Generalization**: **85.1%** accuracy on completely unseen model architectures (held-out BigGAN test set).
+* **Key Takeaway**: Visual surface cues generalize reliably to unseen models, while frequency signatures excel at catching architecture-specific upsampling patterns.
 
 ---
 
 ## 🚀 Quickstart & Usage
 
-### Option 1: Live Demo (No Install Needed)
-Visit [**https://ai-generated-image-detection-qqxy.onrender.com**](https://ai-generated-image-detection-qqxy.onrender.com) to test your own images directly in the browser.
+### Option 1: Try the Live Web App (No Installation)
+Open [**https://ai-generated-image-detection-qqxy.onrender.com**](https://ai-generated-image-detection-qqxy.onrender.com) in your browser to test your own images immediately.
 
 ---
 
 ### Option 2: Run Locally with Python
 
 ```bash
-# Clone the repository
+# 1. Clone the repository
 git clone https://github.com/sargamsahu1011/ai-generated-image-detection.git
 cd ai-generated-image-detection
 
-# Create and activate a virtual environment
+# 2. Create and activate a virtual environment
 python -m venv venv
 # On Windows:
 .\venv\Scripts\activate
 # On Linux/macOS:
 source venv/bin/activate
 
-# Install dependencies
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# Start the web app
+# 4. Start the app
 python -m backend.app
 ```
 
-Then navigate to **`http://localhost:5000`** in your browser.
+Then open your browser and go to: **`http://localhost:5000`**
 
 ---
 
 ### Option 3: Run with Docker
 
 ```bash
-# Build the container
-docker build -t spectralens .
+# Build the container image
+docker build -t ai-image-detector .
 
 # Run the container
-docker run -p 5000:5000 spectralens
+docker run -p 5000:5000 ai-image-detector
 ```
 
-Access the dashboard at **`http://localhost:5000`**.
+Open **`http://localhost:5000`** in your browser.
 
 ---
 
-## 🌐 REST API Reference
+## 🌐 Simple REST API
 
-The backend provides simple REST endpoints for easy integration into automated pipelines, bots, or content moderation workflows:
+You can easily integrate detection into your own apps, bots, or scripts:
 
-### Endpoints:
-- `GET /health` — Check server health and status.
-- `GET /api/samples` — List built-in demo sample images.
-- `POST /predict` — Quick classification returning prediction and probabilities.
-- `POST /explain` — Full forensic analysis including base64 6-panel diagnostic visualization.
+### Endpoints
+* `GET /health` — Service health check.
+* `GET /api/samples` — List built-in demo sample images.
+* `POST /predict` — Fast prediction returning classification and probabilities.
+* `POST /explain` — Full analysis including the base64-encoded 6-panel diagnostic visualization.
 
 ### Python Example:
 
@@ -185,7 +172,7 @@ with open("path/to/image.jpg", "rb") as f:
 
 result = response.json()
 print("Verdict:", result["prediction"])             # "AI" or "REAL"
-print("Confidence:", result["confidence_percent"])  # e.g., 98.4
+print("Confidence:", result["confidence_percent"])  # e.g., 98.4%
 print("Diagnostic Panel URI:", result["diagnostic_panel_base64"][:50], "...")
 ```
 
@@ -201,36 +188,34 @@ curl -X POST -F "image=@samples/uploaded_check.jpg" http://localhost:5000/predic
 
 ```text
 ai-generated-image-detection/
-├── backend/                    # Production Flask API & inference engine
-│   ├── app.py                  # API endpoints (/predict, /explain, /health)
-│   └── inference.py            # Multimodal inference pipeline & base64 report generator
-├── frontend/                   # Web user interface
-│   └── index.html              # Modern dark glassmorphic dashboard (Tailwind CSS)
-├── xai/                        # Explainable AI (XAI) Suite
-│   ├── gradcam.py              # Pure PyTorch Grad-CAM & overlay generator
-│   ├── spectral_xai.py         # 2D FFT & Azimuthal Radial Energy profiling
-│   └── visualizer.py           # 6-panel 150 DPI diagnostic figure generator
+├── backend/                    # Flask REST API & inference logic
+│   ├── app.py                  # API routes (/predict, /explain, /health)
+│   └── inference.py            # Multimodal inference & report generator
+├── frontend/                   # Interactive web dashboard
+│   └── index.html              # Modern dark-mode UI (Tailwind CSS)
+├── xai/                        # Explainable AI (XAI) modules
+│   ├── gradcam.py              # Pure PyTorch Grad-CAM heatmaps
+│   ├── spectral_xai.py         # 2D FFT & radial energy profiling
+│   └── visualizer.py           # 6-panel diagnostic figure generator
 ├── branch_a/                   # Visual surface analysis pipeline & checkpoints
 ├── branch_b/                   # Spectral frequency (2D FFT) pipeline & checkpoints
 ├── fusion/                     # Decision ensemble & feature fusion modules
-├── samples/                    # Preloaded test gallery images
+├── samples/                    # Curated sample images for testing
 ├── Dockerfile                  # Containerized deployment config
 └── requirements.txt            # Python dependencies
 ```
 
 ---
 
-## 👥 Contributors & Community
+## 👥 Contributors
 
 Developed and maintained by:
 * **Sargam Sahu** ([@sargamsahu1011](https://github.com/sargamsahu1011))
 * **Shubhi Jain** ([@shubhi1401](https://github.com/shubhi1401))
 * **Eklavya Verma** ([@EklavyaVerma](https://github.com/EklavyaVerma))
 
-Contributions, feature requests, and issue reports are always welcome! Feel free to open an issue or submit a pull request.
-
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is open source and available under the [MIT License](LICENSE).
